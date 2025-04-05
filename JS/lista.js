@@ -1,13 +1,17 @@
-function mostrarListas(listaPokes) {
+function mostrarLista(listaPokes) {
     const app = document.getElementById("app");
-    app.innerHTML = ""; // Limpiar el contenido previo
+    let Pokes = "";
 
-    // Crear un string con los nombres de los Pokémon
-    let pokes = ""; // Declarar la variable correctamente
     for (let i = 0; i < listaPokes.length; i++) {
-        pokes += listaPokes[i].name + "<br>"; // Agregar nombre con salto de línea
+        let id = listaPokes[i].url.split("/")[6];
+
+        Pokes += `
+        <div class="c-lista-pokemon poke-${id}" onclick="mostrarDetalle('${listaPokes[i].name}')">
+            <p>#${id}</p>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png">
+            <p>${listaPokes[i].name}</p>
+        </div>`;
     }
 
-    // Mostrar la lista en el contenedor
-    app.appendChild = pokes; // Asignar la lista al contenedor
+    app.innerHTML = Pokes;
 }
